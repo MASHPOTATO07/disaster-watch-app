@@ -29,7 +29,7 @@ This capstone project was granted the "3rd Best Capstone Award" during the IT Re
 <p align="center">
   <img src="https://i.imgur.com/vTQltdl.jpeg" width="20%" height="20%">
   <img src="https://i.imgur.com/I1iuOU5.jpeg" width="20%" height="20%">
-  <img src="https://i.imgur.com/jG5jlge.jpeg" width="20%" height="20%">
+  <img src="https://i.imgur.com/jG5jlge.jpeg" width="20%" height="20%">A
 </p>
 
 <p align="center">

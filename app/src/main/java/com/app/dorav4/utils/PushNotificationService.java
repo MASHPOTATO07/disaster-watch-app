@@ -17,7 +17,7 @@ import java.util.Map;
 
 public class PushNotificationService {
     public static final String BASE_URL = "https://fcm.googleapis.com/fcm/send";
-    public static final String SERVER_KEY = "key=API_KEY_HERE";
+    public static final String SERVER_KEY = "key=IP1Uwfx4rLG7Hrphul7RmTZP1PGVsTr1zkIZJju8rkc";
 
     // Send notification to single user
     public static void unicastNotification(Context context, String token, String title, String message) {

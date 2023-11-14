@@ -2,12 +2,12 @@ package com.app.dorav4.models;
 
 public class Reports {
     private String date, description, disasterType, fullName, profilePicture, reportPicture, userId, reportId, upvotes, comments, latitude, longitude, address;
-
+    private boolean isRead;
     public Reports() {
-
+        isRead = false;
     }
 
-    public Reports(String date, String description, String disasterType, String fullName, String profilePicture, String reportPicture, String userId, String reportId, String upvotes, String comments, String latitude, String longitude, String address) {
+    public Reports(String date, String description, String disasterType, String fullName, String profilePicture, String reportPicture, String userId, String reportId, String upvotes, String comments, String latitude, String longitude, String address, boolean isRead) {
         this.date = date;
         this.description = description;
         this.disasterType = disasterType;
@@ -21,6 +21,7 @@ public class Reports {
         this.latitude = latitude;
         this.longitude = longitude;
         this.address = address;
+        this.isRead = isRead;
     }
 
     public String getDate() {
@@ -126,4 +127,9 @@ public class Reports {
     public void setAddress(String address) {
         this.address = address;
     }
+
+    public boolean isRead() { return isRead; }
+
+    public void setRead(boolean isRead) { this.isRead = isRead; }
+
 }

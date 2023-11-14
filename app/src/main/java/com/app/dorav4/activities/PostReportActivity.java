@@ -73,7 +73,7 @@ public class PostReportActivity extends AppCompatActivity {
     TextInputLayout tilDisasterType, tilDescription;
     AutoCompleteTextView tvDisasterType;
     TextInputEditText etDescription;
-    ImageView ivBack, ivAddImage, ivGetLocation, ivReportingPolicy;
+    ImageView ivBack, ivAddImage, ivImagePreview, ivGetLocation, ivReportingPolicy;
     Button btnReport;
     Uri photoUri;
     AlertDialog dialog;
@@ -120,6 +120,7 @@ public class PostReportActivity extends AppCompatActivity {
         reportStorageReference = FirebaseStorage.getInstance().getReference().child("ReportPictures");
 
         // Set disasters dropdown menu items
+        ivImagePreview = findViewById(R.id.imageView11);
         String[] disasters = getResources().getStringArray(R.array.disasters);
         ArrayAdapter<String> arrayAdapter = new ArrayAdapter<>(PostReportActivity.this, R.layout.dropdown_disasters, disasters);
         tvDisasterType.setAdapter(arrayAdapter);
@@ -270,6 +271,7 @@ public class PostReportActivity extends AppCompatActivity {
                        hashMap.put("address", address);
                        hashMap.put("comments", "0");
                        hashMap.put("upvotes", "0");
+                       hashMap.put("isRead", false);
 
                        reportsReference.child(String.valueOf(epochDate)).updateChildren(hashMap).addOnCompleteListener(o -> {
                            if (task.isSuccessful()) {
@@ -320,13 +322,18 @@ public class PostReportActivity extends AppCompatActivity {
     }
 
     // Select image from gallery
-    private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(new ActivityResultContracts.StartActivityForResult(), result -> {
-        if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
-            photoUri = result.getData().getData();
-        } else if (result.getResultCode() == ImagePicker.RESULT_ERROR) {
-            ImagePicker.Companion.getError(result.getData());
-        }
-    });
+    private final ActivityResultLauncher<Intent> launcher = registerForActivityResult(
+            new ActivityResultContracts.StartActivityForResult(),
+            result -> {
+                if (result.getResultCode() == Activity.RESULT_OK && result.getData() != null) {
+                    photoUri = result.getData().getData();
+                    // Set the ImageView to display the selected image
+                    ivImagePreview.setImageURI(photoUri);
+                } else if (result.getResultCode() == ImagePicker.RESULT_ERROR) {
+                    ImagePicker.Companion.getError(result.getData());
+                }
+            }
+    );
 
     // Get the user's current location
     private void getLocation() {
